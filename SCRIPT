@@ -1,0 +1,10 @@
+gmx trjconv -f md.xtc -s md.tpr -o mdcenter.xtc -center -pbc nojump
+
+gmx make_ndx -f protein.gro -o index.ndx
+
+gmx covar -s 6eqeions.gro -f mdcenter.xtc -n index.ndx -o eigenval.xvg -v eigenvec.trr -av averange.pdb
+
+gmx anaeig -s 6eqeions.gro -f mdcenter.xtc -n index.ndx -v eigenvec.trr -first 1 -last 2 -2d -proj proj.xvg
+
+xmgrace 2dproj.xvg
+
