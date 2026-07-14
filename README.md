@@ -1,6 +1,6 @@
 
 # Script for Principal Component Analysis PCA of a protein
-Copy, paste, and execute the script, line by line, in the directory containing the protein molecular dynamics files. The 2dproj.xvg file will be generated, which can be viewed with the GRACE tool, generating a chart like the one shown below.
+Copy, paste, and execute the script, line by line, in the directory containing the protein molecular dynamics files. The **2dproj.xvg** file will be generated, which can be viewed with the GRACE tool, generating a chart like the one shown below.
 
 This script is compatible with GROMACS version 2024.4 and Ubuntu 24.04.4 LTS release 24.04.
 
