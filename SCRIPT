@@ -1,10 +1,26 @@
-gmx trjconv -f md.xtc -s md.tpr -o mdcenter.xtc -center -pbc nojump
+**gmx trjconv -f md.xtc -s md.tpr -o mdcenter.xtc -center -pbc nojump**
 
-gmx make_ndx -f protein.gro -o index.ndx
+It manipulates the protein's trajectory across frames, centering it and preventing “jumps” within the simulation “box.”
 
-gmx covar -s 6eqeions.gro -f mdcenter.xtc -n index.ndx -o eigenval.xvg -v eigenvec.trr -av averange.pdb
+**gmx make_ndx -f protein.gro -o index.ndx**
 
-gmx anaeig -s 6eqeions.gro -f mdcenter.xtc -n index.ndx -v eigenvec.trr -first 1 -last 2 -2d -proj proj.xvg
+Allows the selection of specific atoms to generate the principal components.
 
-xmgrace 2dproj.xvg
+**gmx covar -s 6eqeions.gro -f mdcenter.xtc -n index.ndx -o eigenval.xvg -v eigenvec.trr -av averange.pdb**
+
+Calculates the covariance matrix.
+
+**gmx anaeig -s 6eqeions.gro -f mdcenter.xtc -n index.ndx -v eigenvec.trr -first 1 -last 2 -2d -proj proj.xvg**
+
+Projection onto Eigenvectors
+Input: mdcenter.xtc (trajectory), eigenvec.trr (eigenvectors)
+Output: proj.xvg (projection of the trajectory onto the first PCs)
+Options:
+-first 1 -last 2: Uses the first 2 eigenvectors (PC1, PC2)
+-2d: Generates a 2D projection (PC1 vs. PC2)
+
+**xmgrace 2dproj.xvg**
+
+Opens the 2dproj.xvg file in Grace (plotting tool)
+Displays a 2D plot of the PC1-PC2 points
 
